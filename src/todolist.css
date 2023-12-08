@@ -1,0 +1,39 @@
+body{
+    background-image: url(https://th.bing.com/th/id/OIP.t8vtO1m95hiKf10q9K7TygHaEK?w=301&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Nova Square', sans-serif;
+font-family: 'Roboto Mono', monospace;
+}
+
+.container,ul{
+    margin: 0 5%;
+}
+.heading{
+    text-align: center;
+}
+.input{
+    padding: 10px;
+}
+.button{
+    padding: 10px;
+}
+.checkboxes{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+ul li{
+    color: white;
+    list-style-type: none;
+    background-color: rgb(1, 88, 49);
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+ul li button{
+    margin: 5px;
+    padding: 5px;
+}

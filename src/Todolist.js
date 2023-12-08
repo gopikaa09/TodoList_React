@@ -1,361 +1,126 @@
-
-// import axios from 'axios';
-// import React, { useEffect, useState } from 'react';
-
-// function Todolist() {
-//     const [input, setInput] = useState('');
-//     const [data, setData] = useState([]);
-//     const [editingId, setEditingId] = useState(null);
-
-//     const handleInput = (e) => {
-//         setInput(e.target.value);
-//     };
-
-//     const handleAdd = () => {
-//         if (input.trim() !== '') {
-//             const newItem = {
-//                 title: input,
-//                 completed: false,
-//             };
-//             axios
-//                 .post('https://jsonplaceholder.typicode.com/users/1/todos', newItem)
-//                 .then((res) => {
-//                     setData([...data, res.data]);
-//                     setInput('');
-//                 })
-//                 .catch((err) => {
-//                     console.log(err);
-//                 });
-//         }
-//     };
-
-//     const handleEdit = (id) => {
-//         setEditingId(id);
-//     };
-
-//     const handleUpdate = (id, updatedTitle) => {
-//         const updatedData = data.map((item) => {
-//             if (item.id === id) {
-//                 return { ...item, title: updatedTitle };
-//             }
-//             return item;
-//         });
-//         axios
-//             .put(`https://jsonplaceholder.typicode.com/users/1/todos/${id}`, {
-//                 title: updatedTitle,
-//             })
-//             .then(() => {
-//                 setData(updatedData);
-//                 setEditingId(null);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     };
-    
-
-//     const handleDelete = (id) => {
-//         axios
-//             .delete(`https://jsonplaceholder.typicode.com/users/1/todos/${id}`)
-//             .then(() => {
-//                 const updatedData = data.filter((item) => item.id !== id);
-//                 setData(updatedData);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     };
-
-//     useEffect(() => {
-//         axios
-//             .get('https://jsonplaceholder.typicode.com/users/1/todos')
-//             .then((res) => {
-//                 setData(res.data);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     }, []);
-
-//     return (
-//         <div>
-//             <h1>ToDo List</h1>
-//             <input type="text" value={input} onChange={handleInput} />
-//             <button onClick={handleAdd}>Add</button>
-//             <table>
-//                 <tbody>
-//                     {data.map((val) => (
-//                         <tr key={val.id}>
-//                             <td>
-//                                 {val.id === editingId ? (
-//                                     <input
-//                                         type="text"
-//                                         value={val.title}
-//                                         onChange={(e) => handleUpdate(val.id, e.target.value)}
-//                                     />
-//                                 ) : (
-//                                     <p>{val.title}</p>
-//                                 )}
-//                             </td>
-//                             <td>{val.completed ? 'Completed' : 'Not Completed'}</td>
-//                             <td>
-//                                 {val.id === editingId ? (
-//                                     <button onClick={() => handleUpdate(val.id, val.title)}>Save</button>
-//                                 ) : (
-//                                     <button onClick={() => handleEdit(val.id)}>Edit</button>
-//                                 )}
-//                             </td>
-//                             <td>
-//                                 <button onClick={() => handleDelete(val.id)}>Delete</button>
-//                             </td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </table>
-//         </div>
-//     );
-// }
-
-// export default Todolist;
-
-// import axios from 'axios';
-// import React, { useEffect, useState } from 'react';
-
-// function Todolist() {
-//     const [input, setInput] = useState('');
-//     const [data, setData] = useState([]);
-//     const [editingId, setEditingId] = useState(null);
-
-//     const handleInput = (e) => {
-//         setInput(e.target.value);
-//     };
-
-//     const handleAdd = () => {
-//         if (input.trim() !== '') {
-//             const newItem = {
-//                 title: input,
-//                 completed: false,
-//             };
-//             axios
-//                 .post('https://jsonplaceholder.typicode.com/users/1/todos', newItem)
-//                 .then((res) => {
-//                     setData([...data, res.data]);
-//                     setInput('');
-//                 })
-//                 .catch((err) => {
-//                     console.log(err);
-//                 });
-//         }
-//     };
-
-//     const handleEdit = (id) => {
-//         setEditingId(id);
-//     };
-
-//     const handleUpdate = (id, updatedTitle) => {
-//         const updatedData = data.map((item) => {
-//             if (item.id === id) {
-//                 return { ...item, title: updatedTitle };
-//             }
-//             return item;
-//         });
-//         axios
-//             .put(`https://jsonplaceholder.typicode.com/users/1/todos/${id}`, {
-//                 id: id,
-//                 title: updatedTitle,
-//                 completed: false, // Consider sending the 'completed' status if necessary
-//             })
-//             .then(() => {
-//                 setData(updatedData);
-//                 setEditingId(null);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     };
-
-//     const handleDelete = (id) => {
-//         axios
-//             .delete(`https://jsonplaceholder.typicode.com/users/1/todos/${id}`)
-//             .then(() => {
-//                 const updatedData = data.filter((item) => item.id !== id);
-//                 setData(updatedData);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     };
-
-//     useEffect(() => {
-//         axios
-//             .get('https://jsonplaceholder.typicode.com/users/1/todos')
-//             .then((res) => {
-//                 setData(res.data);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//     }, []);
-
-//     return (
-//         <div>
-//             <h1>ToDo List</h1>
-//             <input type="text" value={input} onChange={handleInput} />
-//             <button onClick={handleAdd}>Add</button>
-//             <table>
-//                 <tbody>
-//                     {data.map((val) => (
-//                         <tr key={val.id}>
-//                             <td>
-//                                 {val.id === editingId ? (
-//                                     <input
-//                                         type="text"
-//                                         value={val.title}
-//                                         onChange={(e) => handleUpdate(val.id, e.target.value)}
-//                                     />
-//                                 ) : (
-//                                     <p>{val.title}</p>
-//                                 )}
-//                             </td>
-//                             <td>{val.completed ? 'Completed' : 'Not Completed'}</td>
-//                             <td>
-//                                 {val.id === editingId ? (
-//                                     <button onClick={() => handleUpdate(val.id, val.title)}>Save</button>
-//                                 ) : (
-//                                     <button onClick={() => handleEdit(val.id)}>Edit</button>
-//                                 )}
-//                             </td>
-//                             <td>
-//                                 <button onClick={() => handleDelete(val.id)}>Delete</button>
-//                             </td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </table>
-//         </div>
-//     );
-// }
-
-// export default Todolist;
-
-
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import "./todolist.css"
 
-function Todolist() {
-    const [input, setInput] = useState('');
-    const [data, setData] = useState([]);
-    const [editingId, setEditingId] = useState(null);
+const TodoApp = () => {
+  const [todos, setTodos] = useState([]);
+  const [newTask, setNewTask] = useState('');
+  const [showCompleted, setShowCompleted] = useState(false);
+  const [showNotCompleted, setShowNotCompleted] = useState(true);
 
-    const handleInput = (e) => {
-        setInput(e.target.value);
-    };
+  useEffect(() => {
+    // Fetch todos from the API endpoint
+    axios.get('https://jsonplaceholder.typicode.com/users/1/todos')
+      .then(response => setTodos(response.data))
+      .catch(error => console.error('Error fetching todos:', error));
+  }, []);
 
-    const handleAdd = () => {
-        if (input.trim() !== '') {
-            const newItem = {
-                title: input,
-                completed: false,
-            };
-            axios
-                .post('https://jsonplaceholder.typicode.com/users/1/todos', newItem)
-                .then((res) => {
-                    setData([...data, res.data]);
-                    setInput('');
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    };
+  const handleAddTask = () => {
+    if (newTask.trim() !== '') {
+      const newTodo = {
+        id: todos.length + 1,
+        title: newTask,
+        completed: false,
+      };
+      setTodos([newTodo, ...todos]);
+      setNewTask('');
+    }
+  };
 
-    const handleEdit = (id) => {
-        setEditingId(id);
-    };
-
-    const handleUpdate = (id, updatedTitle) => {
-        const updatedData = data.map((item) => {
-            if (item.id === id) {
-                return { ...item, title: updatedTitle };
-            }
-            return item;
-        });
-
-        axios
-            .put(`https://jsonplaceholder.typicode.com/users/1/todos/${id}`, {
-                id: id,
-                title: updatedTitle,
-                completed: false, // Consider sending the 'completed' status if necessary
-            })
-            .then(() => {
-                setData(updatedData);
-                setEditingId(null);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    const handleDelete = (id) => {
-        axios
-            .delete(`https://jsonplaceholder.typicode.com/users/1/todos/${id}`)
-            .then(() => {
-                const updatedData = data.filter((item) => item.id !== id);
-                setData(updatedData);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    useEffect(() => {
-        axios
-            .get('https://jsonplaceholder.typicode.com/users/1/todos')
-            .then((res) => {
-                setData(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
-    return (
-        <div>
-            <h1>ToDo List</h1>
-            <input type="text" value={input} onChange={handleInput} />
-            <button onClick={handleAdd}>Add</button>
-            <table>
-                <tbody>
-                    {data.map((val) => (
-                        <tr key={val.id}>
-                            <td>
-                                {val.id === editingId ? (
-                                    <input
-                                        type="text"
-                                        value={val.title}
-                                        onChange={(e) => handleUpdate(val.id, e.target.value)}
-                                    />
-                                ) : (
-                                    <p>{val.title}</p>
-                                )}
-                            </td>
-                            <td>{val.completed ? 'Completed' : 'Not Completed'}</td>
-                            <td>
-                                {val.id === editingId ? (
-                                    <button onClick={() => handleUpdate(val.id, val.title)}>Save</button>
-                                ) : (
-                                    <button onClick={() => handleEdit(val.id)}>Edit</button>
-                                )}
-                            </td>
-                            <td>
-                                <button onClick={() => handleDelete(val.id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+  const handleToggleComplete = (id) => {
+    const updatedTodos = todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
-}
+    setTodos(updatedTodos);
+  };
 
-export default Todolist;
+  const handleEditTask = (id, newTitle) => {
+    const updatedTodos = todos.map(todo =>
+      todo.id === id ? { ...todo, title: newTitle } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
+  const handleDeleteTask = (id) => {
+    const updatedTodos = todos.filter(todo => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
+  const completedTodos = todos.filter(todo => todo.completed);
+  const notCompletedTodos = todos.filter(todo => !todo.completed);
+
+  return (
+    <div>
+      <h1 className='heading'>Todo App</h1>
+      <div className='container'>
+      <div>
+
+        <input className='input'
+          type="text"
+          placeholder="Enter new task"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+        />
+        <button className='button' onClick={handleAddTask}>Add Task</button>
+
+
+        <div className='checkboxes'>
+        <label>
+          Show Completed</label>
+        <input
+          type="checkbox"
+          checked={showCompleted}
+          onChange={() => setShowCompleted(!showCompleted)}
+        /><br></br>
+        <label htmlFor=''>Show Not Completed</label>
+        <input
+          type='checkbox'
+          checked={showNotCompleted}
+          onChange={() => setShowNotCompleted(!showNotCompleted)}
+        />
+        </div>
+
+
+        
+        <ul>
+          {showCompleted &&
+            completedTodos.map(todo => (
+              <li key={todo.id}>
+                <span style={{ textDecoration: 'line-through' }}>{todo.title}</span><br></br>
+                <button onClick={() => handleToggleComplete(todo.id)}>
+                  {todo.completed ? 'Done' : 'Not Done'}
+                </button>
+                <button onClick={() => handleEditTask(todo.id, prompt('Enter new title:', todo.title))}>
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteTask(todo.id)}>Delete</button>
+              </li>
+            ))}
+        </ul>
+     
+      <div>
+        
+        <ul>
+          {showNotCompleted &&
+            notCompletedTodos.map(todo => (
+              <li key={todo.id}>
+                <span>{todo.title}</span><br></br>
+                <button onClick={() => handleToggleComplete(todo.id)}>
+                  {todo.completed ? 'Done' : 'Not Done'}
+                </button>
+                <button onClick={() => handleEditTask(todo.id, prompt('Enter new title:', todo.title))}>
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteTask(todo.id)}>Delete</button>
+              </li>
+            ))}
+        </ul>
+      </div>
+      </div>
+    </div>
+    </div>
+  );
+};
+
+export default TodoApp;
+
