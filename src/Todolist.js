@@ -16,7 +16,10 @@ const TodoApp = () => {
   }, []);
 
   const handleAddTask = () => {
-    if (newTask.trim() !== '') {
+    if(newTask==""){
+        alert("The task is empty")
+    }
+    else if (newTask.trim() !== '') {
       const newTodo = {
         id: todos.length + 1,
         title: newTask,
