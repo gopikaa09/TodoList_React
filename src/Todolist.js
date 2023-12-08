@@ -16,7 +16,7 @@ const TodoApp = () => {
   }, []);
 
   const handleAddTask = () => {
-    if(newTask==""){
+    if(newTask===""){
         alert("The task is empty")
     
     }
